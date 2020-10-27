@@ -61,6 +61,7 @@
       <li > <a href="" ng-click="masterShow = !masterShow;"><i class="fa fa-list-alt" aria-hidden="true"></i><span>{{'master' | translate}}</span>
           <div class="arrow rotate pull-right"><i ng-class="{'fa fa-angle-right':masterShow == false,'fa fa-angle-down' : masterShow == true}"></i></div></a>
           <ul  ng-show="masterShow == true" class="list-unstyled">
+            <li ng-class="{activebar:sidepath=='wifi'}"> <a href="" ng-click="pageverification('/#!/wifi')"><i class="fa fa-wifi" aria-hidden="true"></i><span>{{'Wifi Config' | translate}}</span></a></li>
             <li ng-class="{activebar:sidepath=='machine_registration'}"> <a href="" ng-click="pageverification('/#!/machine_registration')"><i class="fa fa-desktop" aria-hidden="true"></i><span>{{'machine' | translate}}
             </span></a></li>
             <li ng-class="{activebar:sidepath=='shift_registration'}"> <a href="" ng-click="pageverification('/#!/shift_registration')"><i class="fa fa-clock-o" aria-hidden="true"></i><span>{{'shift' | translate}}</span></a></li>

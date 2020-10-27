@@ -20,7 +20,7 @@ $scope.shiftform= function(){
 // $scope.ntime="9:00 am"
 $scope.working = $filter('date')($scope.shiftregistration.working_time_dummy, "HH:mm:ss");
 $scope.day = $filter('date')($scope.shiftregistration.day_start_time_dummy, "hh:mma");
-        var shiftregistration = {"working_time":$scope.working,"no_of_shift":$scope.shiftregistration.no_of_shift,"day_start_time":$scope.day,"working_time_dummy":$scope.shiftregistration.working_time_dummy,"day_start_time_dummy":$scope.shiftregistration.day_start_time_dummy, "tenant_id": $scope.tenant_id};
+        var shiftregistration = {"working_time":$scope.working,"no_of_shift":$scope.shiftregistration.no_of_shift,"day_start_time":$scope.day,"working_time_dummy":$scope.shiftregistration.working_time_dummy,"day_start_time_dummy":$scope.shiftregistration.day_start_time_dummy, "tenant_id": $scope.shiftregistration.tenant_id};
 
 if($scope.shiftregistration.id==null){
       $http
@@ -131,7 +131,7 @@ $scope.newshifttrans= function(){
    $scope.work = $filter('date')($scope.shifttransaction.actual_working_hours_dummy, "HH:mm:ss");
    $scope.day = $scope.shifttransaction.start_day;
    $scope.end_day = $scope.shifttransaction.end_day;
-  //$scope.tenant_id = $scope.shifttransaction.tenant_id
+  $scope.tenant_id = $scope.shifttransaction.tenant_id
 
 if ($scope.lenst>0){
 $scope.lshiftno=parseInt($scope.lenst)+1;
@@ -143,9 +143,10 @@ $scope.lshiftno=parseInt($scope.lenst)+1;
 
         var shifttransaction = {"shift_start_time":$scope.daystart,"shift_end_time": $scope.dayend,"actual_working_hours":$scope.work,"day":$scope.day,"end_day":$scope.end_day,
         "shift_id": $scope.shiftdetails.id, "shift_no": $scope.shifttransaction.shift_no,"shift_start_time_dummy":$scope.shifttransaction.shift_start_time_dummy,
-        "tenant_id": $scope.tenant_id,
+        "tenant_id": $scope.shifttransaction.tenant_id,
         "shift_end_time_dummy":$scope.shifttransaction.shift_end_time_dummy,"actual_working_hours_dummy":$scope.shifttransaction.actual_working_hours_dummy};//,"tenant_id": $scope.shifttransaction.tenant_id};
         console.log($scope.shifttransaction)
+
 
 
 if ($scope.shifttransaction.id==null){
@@ -157,24 +158,27 @@ if ($scope.shifttransaction.id==null){
       })
 
       .success(function(data) {
+        console.log(data)
 
         if(data){
         // $window.location.reload();
        // $state.go('/company_registration');
         alert("Registration completed");
-      $window.location.reload();
+     // $window.location.reload();
         }else{
         alert('Registration Failed');
         }
       });
 }else
 {
+  
   var shifttransaction = {"shift_start_time":$scope.daystart,"shift_end_time": $scope.dayend,"actual_working_hours":$scope.work,"day":$scope.day,"end_day":$scope.end_day,
-        "shift_id": $scope.shiftdetails.id, "shift_no": $scope.shifttransaction.shift_no,"shift_start_time_dummy":$scope.shifttransaction.shift_start_time_dummy,
-        "tenant_id": $scope.shifttransaction.tenant_id,
-        "shift_end_time_dummy":$scope.shifttransaction.shift_end_time_dummy,"actual_working_hours_dummy":$scope.shifttransaction.actual_working_hours_dummy,"tenant_id": $scope.shifttransaction.tenant_id}
-        console.log($scope.shifttransaction)
+  "shift_id": $scope.shiftdetails.id, "shift_no": $scope.shifttransaction.shift_no,"shift_start_time_dummy":$scope.shifttransaction.shift_start_time_dummy,
+  "tenant_id": $scope.shifttransaction.tenant_id,
+  "shift_end_time_dummy":$scope.shifttransaction.shift_end_time_dummy,"actual_working_hours_dummy":$scope.shifttransaction.actual_working_hours_dummy};//,"tenant_id": $scope.shifttransaction.tenant_id};
+  console.log($scope.shifttransaction)
 
+      
     $http
       ({
         method: 'put',
@@ -186,6 +190,7 @@ if ($scope.shifttransaction.id==null){
       })
 
       .success(function(data) {
+        console.log(data)
 
         if(data){
 
@@ -222,28 +227,40 @@ $scope.shifttransact = {id:null,shift_start_time:"",shift_end_time:"",actual_wor
 console.log($scope.shifttransact)
 
 
+$scope.shifttransact = $scope.tenant_id;
+console.log($scope.shifttransact)
+
+
  $scope.shifttransaction = angular.copy($scope.shifttransact);
+ console.log($scope.shifttransaction)
 //  $scope.shifttransaction  = $scope.shifttransaction.tenant_id;
  }
 
     $scope.edit1 = function(id) {
-      console.log
+      console.log(id)
+
 
 var i;
-
+$scope.shifttransaction = $scope.tenant_id;
+console.log($scope.shifttransaction)
    for(i in $rootScope.shiftstrans) {
-     //console.log($rootScope.shiftstrans)
+    //console.log($rootScope.shiftstrans)
 
             if($rootScope.shiftstrans[i].id == id) {
                var shifttrans_id=$rootScope.shiftstrans[i];
               
                $scope.shifttransaction = angular.copy(shifttrans_id);
+               
               
+
 
                console.log($scope.shifttransaction);
             }
-
+         
         }
+
+        
+      
     }
     
 

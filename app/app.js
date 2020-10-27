@@ -6,6 +6,8 @@ angular.module('myApp', [
   'myApp.view1',
   'myApp.view2',
   'frontpage',
+  'wifi' ,
+
   'login',
   'registrations',
   'dashboard',
@@ -1408,8 +1410,8 @@ var hi_translations = {
         //  $rootScope.api_url = "http://15.207.212.223:81/";
         //  $rootScope.api_url_report = "http://15.207.212.223:81/";
     
-        $rootScope.api_url = "http://192.168.0.237:4000/";
-         $rootScope.api_url_report = "http://192.168.0.237:4000/";
+        $rootScope.api_url = "http://192.168.2.214:4001/";
+         $rootScope.api_url_report = "http://192.168.2.214:4001/";
     
 
     //  $rootScope.api_url = "http://52.66.140.40/";
